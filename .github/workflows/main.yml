@@ -1,0 +1,59 @@
+name: Main CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    name: Build
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-nodemodules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nodemodules-
+
+      # https://github.com/actions/setup-node
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "10.x"
+
+      - name: Install npm dependencies
+        run: |
+          npm install --save && npm install -g twilio-cli
+
+      #- name: npm install and npm run build
+      #  run: |
+      #    npm ci
+      #    npm run build
+
+      - name: Run build task for sandbox
+        run: |
+          npm run build
+          npm test
+        env:
+          CI: true
+
+
+      - name: Deploy ui and to videocall.tutorreach.com
+        if: github.ref == 'refs/heads/main'
+        run: |
+          eval $(ssh-agent -s) 
+          ssh-add <(echo "$SSH_PRIVATE_KEY") 
+          # List out your new key's fingerprint
+          ssh-add -l
+          tar zcf /tmp/code.tar.gz --exclude .git -C ${GITHUB_WORKSPACE} .
+          scp -P 2222 -o stricthostkeychecking=no /tmp/code.tar.gz sandbox@${DEVELOPMENT_HOSTNAME}:deploy/backend/
+          ssh sandbox@${DEVELOPMENT_HOSTNAME} -p 2222 "tar xfz deploy/backend/code.tar.gz -C public_html && exit"
+        env:
+          DEVELOPMENT_HOSTNAME: 18.132.221.77
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
