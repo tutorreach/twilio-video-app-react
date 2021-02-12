@@ -1,9 +1,9 @@
-name: Main CI
+name: Master CI
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -34,7 +34,7 @@ jobs:
       #- name: npm install and npm run build
       #  run: |
       #    npm ci
-      #    npm run build
+      #    npm run build 
 
       - name: Run build task for sandbox
         run: |
@@ -45,7 +45,7 @@ jobs:
 
 
       - name: Deploy ui and to videocall.tutorreach.com
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         run: |
           eval $(ssh-agent -s) 
           ssh-add <(echo "$SSH_PRIVATE_KEY") 
