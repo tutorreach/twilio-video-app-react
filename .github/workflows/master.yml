@@ -13,35 +13,35 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-nodemodules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-nodemodules-
+      # - name: Cache node modules
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: '**/node_modules'
+      #     key: ${{ runner.os }}-nodemodules-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-nodemodules-
 
       # https://github.com/actions/setup-node
-      - name: Install Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "10.x"
+      # - name: Install Node.js
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: "10.x"
 
-      - name: Install npm dependencies
-        run: |
-          npm install --save && npm install -g twilio-cli
+      # - name: Install npm dependencies
+      #   run: |
+      #     npm install --save && npm install -g twilio-cli
 
       #- name: npm install and npm run build
       #  run: |
       #    npm ci
       #    npm run build 
 
-      - name: Run build task for videocall.tutorreach.com
-        run: |
-          npm run build
-     #     npm test
-        env:
-          CI: true
+      # - name: Run build task for videocall.tutorreach.com
+      #   run: |
+      #     npm run build
+      #     npm test
+      #   env:
+      #     CI: true
 
 
       - name: Deploy ui and to videocall.tutorreach.com
