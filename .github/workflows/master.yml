@@ -53,7 +53,7 @@ jobs:
           ssh-add -l
           tar zcf /tmp/build.tar.gz --exclude .git -C build/ .
           scp -P 2223 -o stricthostkeychecking=no /tmp/build.tar.gz twiliovideo@${DEVELOPMENT_HOSTNAME}:deploy/
-          ssh twiliovideo@${DEVELOPMENT_HOSTNAME} -p 2223 "tar xfz deploy/backend/build.tar.gz -C public_html && exit"
+          ssh twiliovideo@${DEVELOPMENT_HOSTNAME} -p 2223 "tar xfz deploy/build.tar.gz -C public_html && exit"
         env:
           DEVELOPMENT_HOSTNAME: 18.132.221.77
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
