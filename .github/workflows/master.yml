@@ -52,8 +52,8 @@ jobs:
           # List out your new key's fingerprint
           ssh-add -l
           tar zcf /tmp/code.tar.gz --exclude .git -C ${GITHUB_WORKSPACE} .
-          scp -P 2222 -o stricthostkeychecking=no /tmp/code.tar.gz twiliovideo@${DEVELOPMENT_HOSTNAME}:deploy/backend/
-          ssh twiliovideo@${DEVELOPMENT_HOSTNAME} -p 2222 "tar xfz deploy/backend/code.tar.gz -C public_html && exit"
+          scp -P 2223 -o stricthostkeychecking=no /tmp/code.tar.gz twiliovideo@${DEVELOPMENT_HOSTNAME}:deploy/backend/
+          ssh twiliovideo@${DEVELOPMENT_HOSTNAME} -p 2223 "tar xfz deploy/backend/code.tar.gz -C public_html && exit"
         env:
           DEVELOPMENT_HOSTNAME: 18.132.221.77
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
