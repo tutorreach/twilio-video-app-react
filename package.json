@@ -98,7 +98,7 @@
       "pre-commit": "lint-staged"
     }
   },
-  "proxy": "http://videocall.tutorreach.com",
+  "proxy": "http://videocall.tutorreach.com/",
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
