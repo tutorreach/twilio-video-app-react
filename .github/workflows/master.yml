@@ -36,7 +36,7 @@ jobs:
       #    npm ci
       #    npm run build 
 
-      - name: Run build task for sandbox
+      - name: Run build task for videocall.tutorreach.com
         run: |
           npm run build
           npm test
@@ -51,7 +51,7 @@ jobs:
           ssh-add <(echo "$SSH_PRIVATE_KEY") 
           # List out your new key's fingerprint
           ssh-add -l
-          tar zcf /tmp/build.tar.gz --exclude .git -C dist/ .
+          tar zcf /tmp/build.tar.gz --exclude .git -C build/ .
           scp -P 2223 -o stricthostkeychecking=no /tmp/build.tar.gz twiliovideo@${DEVELOPMENT_HOSTNAME}:deploy/backend/
           ssh twiliovideo@${DEVELOPMENT_HOSTNAME} -p 2223 "tar xfz deploy/backend/build.tar.gz -C public_html && exit"
         env:
