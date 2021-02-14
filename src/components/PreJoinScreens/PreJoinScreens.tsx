@@ -18,6 +18,7 @@ export default function PreJoinScreens() {
   const { user } = useAppState();
   const { getAudioAndVideoTracks } = useVideoContext();
   const { URLRoomName } = useParams();
+  const { URLName } = useParams();
   const [step, setStep] = useState(Steps.roomNameStep);
 
   const [name, setName] = useState<string>(user?.displayName || '');
@@ -35,6 +36,14 @@ export default function PreJoinScreens() {
   }, [user, URLRoomName]);
 
   useEffect(() => {
+    if (URLName) {
+      setName(URLName);
+
+      setStep(Steps.deviceSelectionStep);
+    }
+  }, [user, URLName]);
+
+  useEffect(() => {
     if (step === Steps.deviceSelectionStep && !mediaError) {
       getAudioAndVideoTracks().catch(error => {
         console.log('Error acquiring local media:');
@@ -48,7 +57,11 @@ export default function PreJoinScreens() {
     event.preventDefault();
     // If this app is deployed as a twilio function, don't change the URL because routing isn't supported.
     if (!window.location.origin.includes('twil.io')) {
-      window.history.replaceState(null, '', window.encodeURI(`/room/${roomName}${window.location.search || ''}`));
+      window.history.replaceState(
+        null,
+        '',
+        window.encodeURI(`/room/${roomName}/name/${name}${window.location.search || ''}`)
+      );
     }
     setStep(Steps.deviceSelectionStep);
   };
