@@ -39,7 +39,7 @@ ReactDOM.render(
           <PrivateRoute exact path="/">
             <VideoApp />
           </PrivateRoute>
-          <PrivateRoute path="/room/:URLRoomName/name/:URLName">
+          <PrivateRoute path="/lesson/:URLRoomName/user/:URLName">
             <VideoApp />
           </PrivateRoute>
           <Route path="/login">

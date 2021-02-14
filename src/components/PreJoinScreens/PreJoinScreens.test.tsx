@@ -50,7 +50,7 @@ describe('the PreJoinScreens component', () => {
     const handleSubmit = wrapper.find(RoomNameScreen).prop('handleSubmit');
     handleSubmit({ preventDefault: () => {} } as any);
 
-    expect(window.history.replaceState).toHaveBeenCalledWith(null, '', '/room/Test%20Room%20123');
+    expect(window.history.replaceState).toHaveBeenCalledWith(null, '', '/lesson/Test%20Room%20123');
   });
 
   it('should not update the URL when the app is deployed as a Twilio function', () => {

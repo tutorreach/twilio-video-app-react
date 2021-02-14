@@ -60,7 +60,7 @@ export default function PreJoinScreens() {
       window.history.replaceState(
         null,
         '',
-        window.encodeURI(`/room/${roomName}/name/${name}${window.location.search || ''}`)
+        window.encodeURI(`/lesson/${roomName}/user/${name}${window.location.search || ''}`)
       );
     }
     setStep(Steps.deviceSelectionStep);
