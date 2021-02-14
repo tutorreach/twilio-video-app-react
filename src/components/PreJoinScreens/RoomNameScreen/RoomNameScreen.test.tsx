@@ -20,7 +20,7 @@ describe('the RoomNameScreen component', () => {
       />
     );
 
-    expect(wrapper.text()).toContain("Enter your name and the name of a room you'd like to join");
+    expect(wrapper.text()).toContain("Enter your ID and the ID of a lesson you'd like to join");
     expect(wrapper.find(TextField).length).toBe(2);
   });
 
@@ -36,7 +36,7 @@ describe('the RoomNameScreen component', () => {
       />
     );
 
-    expect(wrapper.text()).toContain("Enter the name of a room you'd like to join");
+    expect(wrapper.text()).toContain("Enter the ID of a lesson you'd like to join");
     expect(wrapper.find(TextField).length).toBe(1);
   });
 
@@ -59,7 +59,7 @@ describe('the RoomNameScreen component', () => {
       />
     );
 
-    expect(wrapper.text()).toContain("Enter your name and the name of a room you'd like to join");
+    expect(wrapper.text()).toContain("Enter your ID and the ID of a lesson you'd like to join");
     expect(wrapper.find(TextField).length).toBe(2);
   });
 });

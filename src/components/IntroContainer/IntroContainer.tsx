@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'rgb(40, 42, 43)',
+    background: '#006d77',
     height: '100%',
   },
   container: {
@@ -41,7 +41,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundImage: Swoosh,
+    //backgroundImage: Swoosh,
+    background: '#69adb3',
     backgroundSize: 'cover',
     width: '296px',
     [theme.breakpoints.down('sm')]: {
@@ -114,7 +115,7 @@ const IntroContainer = (props: IntroContainerProps) => {
             <div className={classes.logoContainer}>
               <VideoLogo />
               <Typography variant="h6" className={classes.title}>
-                Twilio Programmable Video
+                Tutor Reach Ltd
               </Typography>
             </div>
           </div>
