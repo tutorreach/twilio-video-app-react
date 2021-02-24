@@ -69,13 +69,22 @@ export default function DeviceSelectionScreen({ name, roomName, setStep }: Devic
   return (
     <>
       <Typography variant="h5" className={classes.gutterBottom}>
-        Join Lesson ({roomName})
+        Camera / Microphone Checks
+        {/* ({roomName}) */}
+      </Typography>
+      <Typography variant="caption" className={classes.gutterBottom}>
+        Test your microphone and camera before joining lesson. If you can't join{' '}
+        <a href="" target="_blank">
+          click here
+        </a>
+        .{/* ({roomName}) */}
       </Typography>
 
       <Grid container justify="center">
         <Grid item md={7} sm={12} xs={12}>
           <div className={classes.localPreviewContainer}>
-            <LocalVideoPreview identity={name} />
+            {/* <LocalVideoPreview identity={name} /> */}
+            <LocalVideoPreview identity="" />
           </div>
           <div className={classes.mobileButtonBar}>
             <Hidden mdUp>
